@@ -2,22 +2,31 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function Item({ task, onComplete, onUpdate }) {
+export default function Item({ task, onComplete, onUpdate ,onDone}) {
   return (
     <View style={styles.taskContainer}>
       <Text style={styles.taskText}>{task.text}</Text>
       <View style={styles.actionsContainer}>
+        {/* Done Button */}
+        <TouchableOpacity onPress={onDone}>
+          <Ionicons
+            name={task.completed ? 'checkmark-circle' : 'ellipse-outline'}
+            size={24}
+            color={task.completed ? 'black' : 'gray'}
+          />
+        </TouchableOpacity>
         {/* Update Button */}
         <TouchableOpacity
           style={styles.iconButton}
           onPress={() => onUpdate(task.id)}
         >
-          <Ionicons name="create-outline" size={24} color="#3b82f6" />
+          <Ionicons name="create-outline" size={24} color="#000" />
         </TouchableOpacity>
-        {/* Checkbox */}
-        <TouchableOpacity onPress={() => onComplete(task.id)}>
-          <Ionicons name="checkmark-circle-outline" size={24} color="#3b82f6" />
-        </TouchableOpacity>
+
+        {/* delete Button */}
+       <TouchableOpacity onPress={() => onComplete(task.id)}>
+  <Ionicons name="trash-outline" size={24} color="black" />
+</TouchableOpacity>
       </View>
     </View>
   );

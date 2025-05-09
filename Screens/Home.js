@@ -15,6 +15,7 @@ import {
   ActivityIndicator,
   Button,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import TaskItem from '../Components/Items';
 import TaskInput from '../Components/inputItems';
 import { Add, GetTodosByUserId, UpdateTodo } from '../Context/Operations';
@@ -120,6 +121,15 @@ export default function Home() {
     Alert.alert('Error', 'Failed to delete todo. Please try again.');
   }
 };
+const onDone = (id) => {
+  setTasks((prev) =>
+    prev.map((task) =>
+      task.id === id ? { ...task, completed: !task.completed } : task
+    )
+  );
+};
+
+
 
   const openUpdateModal = (id, text) => {
     setCurrentTaskId(id);
@@ -133,14 +143,15 @@ export default function Home() {
     setCurrentTaskId(null);
   };
 
-  const renderItem = ({ item }) => (
-    <TaskItem
-      task={item}
-      onComplete={() => completeTask(item.id)}
-      onUpdate={() => openUpdateModal(item.id, item.text)}
-    />
-  );
-
+const renderItem = ({ item }) => (
+  <TaskItem
+    task={item}
+    onComplete={() => completeTask(item.id)}
+    onUpdate={() => openUpdateModal(item.id, item.text)}
+    onDone={() => onDone(item.id)} // Pass the onDone function
+  />
+);
+  
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -218,7 +229,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   logoutTouchable: {
-    backgroundColor: '#ff5c5c',
+    backgroundColor: '#000',
     padding: 12,
     borderRadius: 10,
     alignItems: 'center',

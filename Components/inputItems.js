@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     height: 50
   },
   addButton: {
-    backgroundColor: '#3b82f6',
+    backgroundColor: '#000',
     marginLeft: 10,
     padding: 10,
     borderRadius: 50
