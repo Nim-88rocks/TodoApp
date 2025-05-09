@@ -55,14 +55,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   updateButton: {
-    backgroundColor: '#3b82f6',
+    backgroundColor: '#000',
     paddingVertical: 5,
     paddingHorizontal: 10,
     borderRadius: 5,
     marginRight: 10, // Add spacing between the button and the checkbox
   },
   updateButtonText: {
-    color: '#fff',
+    color: '#000',
     fontWeight: 'bold',
     fontSize: 12,
   },

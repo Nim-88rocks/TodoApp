@@ -199,8 +199,12 @@ const renderItem = ({ item }) => (
                       placeholder="Enter updated task"
                     />
                     <View style={styles.modalButtons}>
-                      <Button title="Cancel" onPress={closeModal} />
-                      <Button title="Update" onPress={updateTask} />
+                    <TouchableOpacity style={styles.cancelButton} onPress={closeModal}>
+                    <Text style={styles.buttonText}>Cancel</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.updateButton} onPress={updateTask}>
+                    <Text style={styles.buttonText}>Update</Text>
+                    </TouchableOpacity>
                     </View>
                   </View>
                 </TouchableWithoutFeedback>
@@ -266,6 +270,21 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     marginBottom: 20,
+  },
+   cancelButton: {
+    backgroundColor: '#000', // Red color for Cancel button
+    padding: 10,
+    borderRadius: 5,
+  },
+  updateButton: {
+    backgroundColor: '#000', // Blue color for Update button
+    padding: 10,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   modalButtons: {
     flexDirection: 'row',
