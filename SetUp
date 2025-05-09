@@ -1,0 +1,19 @@
+Clone the repo
+git clone https://github.com/
+cd TodoAuth
+npm install
+npx expo start
+You can use these test credentials from DummyJSON:
+https://dummyjson.com/docs/auth
+username: emilys
+password: emilyspass
+
+Folder Structure
+/Components        # Reusable components like TaskItem, Input
+/Context           # AuthContext and todo operations
+/screens           # Home screen
+App.js             # Entry point
+
+
+
+
