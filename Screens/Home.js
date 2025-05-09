@@ -98,23 +98,28 @@ export default function Home() {
     }
   };
 
-  const completeTask = async (id) => {
-    const taskToUpdate = tasks.find(task => task.id === id);
-    if (!taskToUpdate) return;
+ const completeTask = async (id) => {
+  const taskToUpdate = tasks.find(task => task.id === id);
+  if (!taskToUpdate) return;
 
-    try {
-      const updatedTask = await UpdateTodo(id, { completed: !taskToUpdate.completed });
-      setTasks(prev =>
-        prev.map(task =>
-          task.id === id ? { ...task, completed: updatedTask.completed } : task
-        )
-      );
-      Alert.alert('Success', 'Todo status updated!');
-    } catch (error) {
-      console.error('Failed to update todo:', error);
-      Alert.alert('Error', 'Failed to update todo. Please try again.');
-    }
-  };
+  try {
+    // Simulate DELETE request
+    const response = await fetch(`https://dummyjson.com/todos/${id}`, {
+      method: 'DELETE',
+    });
+    const deletedTask = await response.json();
+
+    console.log('Deleted Task:', deletedTask);
+
+    // Update the local state to remove the task
+    setTasks(prev => prev.filter(task => task.id !== id));
+
+    Alert.alert('Success', 'Todo deleted successfully!');
+  } catch (error) {
+    console.error('Failed to delete todo:', error);
+    Alert.alert('Error', 'Failed to delete todo. Please try again.');
+  }
+};
 
   const openUpdateModal = (id, text) => {
     setCurrentTaskId(id);
